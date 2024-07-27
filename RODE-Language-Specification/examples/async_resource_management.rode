@@ -1,0 +1,31 @@
+// Import necessary modules
+import { async, sleep } from "async";
+import { allocate, deallocate } from "memory_management";
+
+// Define a safe asynchronous resource handler
+async function handle_resources() {
+    // Allocate resources safely
+    let resource = allocate("buffer", 1024);
+
+    try {
+        // Perform asynchronous operations
+        await sleep(1000);
+        console.log("Resource is being processed asynchronously");
+
+        // Simulate processing
+        resource.write("Data is written to the buffer");
+        console.log(resource.read());
+
+    } finally {
+        // Ensure resources are deallocated
+        deallocate("buffer");
+        console.log("Resource has been deallocated safely");
+    }
+}
+
+// Main function to execute the example
+async function main() {
+    await handle_resources();
+}
+
+main().catch(console.error);
