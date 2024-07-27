@@ -1,0 +1,8 @@
+async function fetchData() {
+    // Simulate an asynchronous operation
+    await sleep(1000);
+    return "Data fetched";
+}
+
+let result = fetchData();
+print(result);
